@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trend Signal Report</title>
+<style>
+  :root {
+    --bg: #0f1420; --panel: #1a2133; --line: #2a3350; --ink: #e8ecf5;
+    --muted: #8b96b3; --accent: #6ea8ff;
+    --buy: #2ecc71; --strong: #16a34a; --watch: #f1c40f;
+    --hold: #94a3b8; --avoid: #ef4444; --crowd: #f97316;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.5 -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+  header { padding: 20px 24px; border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg,#141b2b,#0f1420); }
+  h1 { margin: 0 0 4px; font-size: 20px; letter-spacing: .3px; }
+  .meta { color: var(--muted); font-size: 12.5px; }
+  .wrap { padding: 18px 24px 60px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    margin-bottom: 16px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden; }
+  .seg button { background: transparent; color: var(--muted); border: 0;
+    padding: 7px 14px; cursor: pointer; font-size: 13px; }
+  .seg button.on { background: var(--accent); color: #08101f; font-weight: 600; }
+  input[type=search] { background: var(--panel); border: 1px solid var(--line);
+    color: var(--ink); padding: 8px 12px; border-radius: 8px; min-width: 200px;
+    flex: 1; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 10px; margin-bottom: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px; }
+  .card .n { font-size: 22px; font-weight: 700; }
+  .card .l { color: var(--muted); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line);
+    white-space: nowrap; }
+  th { position: sticky; top: 0; background: #202942; cursor: pointer;
+    user-select: none; font-size: 12px; text-transform: uppercase;
+    letter-spacing: .4px; color: var(--muted); }
+  th.num, td.num { text-align: right; }
+  tr:hover td { background: #202942; }
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 999px;
+    font-size: 11px; font-weight: 600; }
+  .g-W { background: #7c3aed33; color: #c4b5fd; }
+  .g-M { background: #2563eb33; color: #93c5fd; }
+  .g-U, .g-\? { background: #64748b33; color: #cbd5e1; }
+  .heat { font-weight: 700; }
+  .mom-pos { color: var(--buy); } .mom-neg { color: var(--avoid); }
+  .v { font-weight: 600; font-size: 12px; }
+  .v-STRONG { color: var(--strong); } .v-BUY { color: var(--buy); }
+  .v-WATCH { color: var(--watch); } .v-HOLD { color: var(--hold); }
+  .v-AVOID { color: var(--avoid); } .v-CROWDED { color: var(--crowd); }
+  .empty { padding: 40px; text-align: center; color: var(--muted); }
+  footer { color: var(--muted); font-size: 12px; padding: 0 24px 30px; }
+  code { background: #0008; padding: 1px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>👜 Luxury Resale — Trend Signal Report</h1>
+  <div class="meta" id="meta">loading…</div>
+</header>
+<div class="wrap">
+  <div class="cards" id="cards"></div>
+  <div id="runbar" style="display:none; margin-bottom:16px; padding:12px 14px;
+       background:var(--panel); border:1px solid var(--line); border-radius:10px">
+    <b style="font-size:13px">Run (local server):</b>
+    <button class="run" data-c="mock">Mock refresh</button>
+    <button class="run" data-c="live">Live run</button>
+    <button class="run" data-c="auto-discover">Auto-discover + live</button>
+    <span id="runstatus" style="color:var(--muted); font-size:12.5px; margin-left:8px"></span>
+  </div>
+  <div class="controls">
+    <div class="seg" id="genderSeg">
+      <button data-g="ALL" class="on">All</button>
+      <button data-g="W">Women</button>
+      <button data-g="M">Men</button>
+    </div>
+    <input type="search" id="q" placeholder="Search product or brand…">
+  </div>
+  <div style="overflow-x:auto">
+    <table id="tbl">
+      <thead><tr id="head"></tr></thead>
+      <tbody id="body"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="empty" style="display:none">No data.json found — run <code>python export_web.py --mock</code> and refresh.</div>
+</div>
+<footer>
+  Static report served from GitHub Pages. To refresh data: run the
+  <b>Update report</b> action on GitHub, or locally
+  <code>python export_web.py --mock</code> then commit <code>docs/data.json</code>.
+</footer>
+
+<script>
+const COLS = [
+  {k:"rank",   t:"#",        num:true},
+  {k:"product",t:"Product"},
+  {k:"gender", t:"For"},
+  {k:"heat_score", t:"Heat", num:true},
+  {k:"momentum",t:"Mom %",  num:true},
+  {k:"listings",t:"Listings",num:true},
+  {k:"median_price",t:"Median",num:true},
+  {k:"mentions",t:"Press",  num:true},
+  {k:"verdict",t:"Verdict"},
+];
+let DATA = [], view = [], gender = "ALL", query = "", sortK = "heat_score", sortDir = -1;
+
+function vClass(v){ return "v-" + (v.split(" ")[0].replace(/[^A-Z]/g,"") || "HOLD"); }
+
+function render(){
+  const head = document.getElementById("head");
+  head.innerHTML = COLS.map(c =>
+    `<th class="${c.num?'num':''}" data-k="${c.k}">${c.t}${sortK===c.k?(sortDir<0?" ▼":" ▲"):""}</th>`).join("");
+  head.querySelectorAll("th").forEach(th => th.onclick = () => {
+    const k = th.dataset.k;
+    if (sortK === k) sortDir *= -1; else { sortK = k; sortDir = (k==="product"||k==="verdict")?1:-1; }
+    apply();
+  });
+
+  const body = document.getElementById("body");
+  body.innerHTML = view.map(r => `<tr>
+    <td class="num">${r.rank}</td>
+    <td>${esc(r.product)}${r.brand?` <span style="color:#8b96b3">· ${esc(r.brand)}</span>`:""}</td>
+    <td><span class="tag g-${r.gender}">${r.gender==="W"?"Women":r.gender==="M"?"Men":r.gender}</span></td>
+    <td class="num heat">${r.heat_score.toFixed(1)}</td>
+    <td class="num ${r.momentum>=0?'mom-pos':'mom-neg'}">${r.momentum>=0?"+":""}${r.momentum.toFixed(1)}</td>
+    <td class="num">${r.listings}</td>
+    <td class="num">${r.median_price?r.median_price.toFixed(2):"—"}</td>
+    <td class="num">${r.mentions}</td>
+    <td class="v ${vClass(r.verdict)}">${esc(r.verdict)}</td>
+  </tr>`).join("");
+}
+
+function apply(){
+  view = DATA.filter(r =>
+    (gender==="ALL" || r.gender===gender) &&
+    (!query || (r.product+" "+r.brand).toLowerCase().includes(query)));
+  view.sort((a,b) => {
+    const x=a[sortK], y=b[sortK];
+    return (typeof x==="number" ? x-y : String(x).localeCompare(String(y))) * sortDir;
+  });
+  render();
+  cards();
+}
+
+function cards(){
+  const buy = view.filter(r=>/BUY/.test(r.verdict)).length;
+  const men = view.filter(r=>r.gender==="M").length;
+  const women = view.filter(r=>r.gender==="W").length;
+  document.getElementById("cards").innerHTML = [
+    ["Products shown", view.length],
+    ["Buy signals", buy],
+    ["Women's", women],
+    ["Men's", men],
+  ].map(([l,n])=>`<div class="card"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
+}
+
+function esc(s){ return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+document.getElementById("genderSeg").onclick = e => {
+  if (e.target.dataset.g){
+    gender = e.target.dataset.g;
+    [...e.currentTarget.children].forEach(b=>b.classList.toggle("on", b===e.target));
+    apply();
+  }
+};
+document.getElementById("q").oninput = e => { query = e.target.value.trim().toLowerCase(); apply(); };
+
+// Run buttons only work when served by server.py (localhost), not on Pages.
+const isLocal = ["localhost","127.0.0.1"].includes(location.hostname);
+if (isLocal) {
+  const bar = document.getElementById("runbar");
+  bar.style.display = "block";
+  bar.querySelectorAll("button.run").forEach(b => b.onclick = async () => {
+    const s = document.getElementById("runstatus");
+    bar.querySelectorAll("button").forEach(x=>x.disabled=true);
+    s.textContent = `running ${b.dataset.c}… (live/discover can take a few minutes)`;
+    try {
+      const res = await fetch("/run/"+b.dataset.c, {method:"POST"});
+      const j = await res.json();
+      s.textContent = j.ok ? "done — reloading data ✓" : "failed: "+(j.error||j.stderr||"see console");
+      if (j.ok) { await load(); }
+      else console.error(j.stderr||j.error);
+    } catch(e){ s.textContent = "server error — is server.py running?"; }
+    bar.querySelectorAll("button").forEach(x=>x.disabled=false);
+  });
+}
+
+function load(){
+ return fetch("data.json?_="+Date.now()).then(r=>{ if(!r.ok) throw 0; return r.json(); })
+  .then(d => {
+    DATA = d.items;
+    document.getElementById("meta").textContent =
+      `${d.count} products · mode: ${d.mode} · ${d.geo} · generated ${d.generated}`;
+    apply();
+  })
+  .catch(()=>{
+    document.getElementById("tbl").style.display="none";
+    document.getElementById("empty").style.display="block";
+    document.getElementById("meta").textContent="no data yet";
+  });
+}
+load();
+</script>
+</body>
+</html>

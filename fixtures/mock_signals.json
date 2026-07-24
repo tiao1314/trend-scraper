@@ -1,0 +1,428 @@
+{
+ "trends": {
+  "Chanel Maxi": {
+   "level": 60.0,
+   "momentum": -2.6
+  },
+  "Chanel Classic": {
+   "level": 41.4,
+   "momentum": -3.5
+  },
+  "Chanel Large Tote": {
+   "level": 60.3,
+   "momentum": 10.2
+  },
+  "Dior Bow Bag": {
+   "level": 76.5,
+   "momentum": -2.9
+  },
+  "Dior Cigale": {
+   "level": 48.6,
+   "momentum": 93.6
+  },
+  "Dior Lady Dior": {
+   "level": 12.8,
+   "momentum": 13.6
+  },
+  "Dior Saddle Bag": {
+   "level": 99.0,
+   "momentum": 5.8
+  },
+  "Hermes Birkin 25": {
+   "level": 23.7,
+   "momentum": 76.1
+  },
+  "Hermes Kelly Mini II": {
+   "level": 15.3,
+   "momentum": 15.7
+  },
+  "Hermes Constance": {
+   "level": 22.1,
+   "momentum": 178.3
+  },
+  "Hermes Kelly Cut Pochette": {
+   "level": 50.6,
+   "momentum": 127.3
+  },
+  "The Row Peggy Clutch": {
+   "level": 7.5,
+   "momentum": 5.0
+  },
+  "The Row Margaux": {
+   "level": 6.4,
+   "momentum": -25.7
+  },
+  "The Row Marlo Tote": {
+   "level": 46.9,
+   "momentum": -57.4
+  },
+  "Miu Miu Arcadie": {
+   "level": 86.8,
+   "momentum": 54.2
+  },
+  "Miu Miu Wander": {
+   "level": 70.3,
+   "momentum": 112.8
+  },
+  "Prada Bonnie": {
+   "level": 92.3,
+   "momentum": 46.4
+  },
+  "Prada Triangle Pouch": {
+   "level": 67.6,
+   "momentum": 1.4
+  },
+  "Prada Re-Edition Nylon": {
+   "level": 85.3,
+   "momentum": 21.1
+  },
+  "Bottega Veneta Andiamo": {
+   "level": 63.6,
+   "momentum": 45.2
+  },
+  "Bottega Veneta Cassette": {
+   "level": 47.1,
+   "momentum": -40.0
+  },
+  "Balenciaga Le City": {
+   "level": 22.2,
+   "momentum": -56.2
+  },
+  "Chloe Paddington": {
+   "level": 18.4,
+   "momentum": 140.1
+  },
+  "Gucci Indy": {
+   "level": 80.3,
+   "momentum": 151.0
+  },
+  "Gucci Jackie 1961": {
+   "level": 28.4,
+   "momentum": 216.3
+  },
+  "Fendi Baguette 1997": {
+   "level": 35.5,
+   "momentum": -59.0
+  },
+  "Fendi Peekaboo": {
+   "level": 57.5,
+   "momentum": 34.8
+  },
+  "Loewe Amazona 180": {
+   "level": 53.8,
+   "momentum": 196.1
+  },
+  "Loewe Puzzle": {
+   "level": 12.0,
+   "momentum": -58.5
+  },
+  "Saint Laurent Mombasa": {
+   "level": 53.9,
+   "momentum": 209.7
+  }
+ },
+ "ebay": {
+  "Chanel Maxi": {
+   "listings": 117,
+   "median_price": 5560.37,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Chanel Classic": {
+   "listings": 98,
+   "median_price": 1493.27,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Chanel Large Tote": {
+   "listings": 81,
+   "median_price": 4542.98,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Dior Bow Bag": {
+   "listings": 18,
+   "median_price": 1051.63,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Dior Cigale": {
+   "listings": 68,
+   "median_price": 1858.55,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Dior Lady Dior": {
+   "listings": 74,
+   "median_price": 6167.31,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Dior Saddle Bag": {
+   "listings": 562,
+   "median_price": 7248.4,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Hermes Birkin 25": {
+   "listings": 16,
+   "median_price": 7487.88,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Hermes Kelly Mini II": {
+   "listings": 189,
+   "median_price": 1718.99,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Hermes Constance": {
+   "listings": 12,
+   "median_price": 512.35,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Hermes Kelly Cut Pochette": {
+   "listings": 5,
+   "median_price": 4360.56,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "The Row Peggy Clutch": {
+   "listings": 62,
+   "median_price": 1262.36,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "The Row Margaux": {
+   "listings": 75,
+   "median_price": 2868.18,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "The Row Marlo Tote": {
+   "listings": 142,
+   "median_price": 6657.46,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Miu Miu Arcadie": {
+   "listings": 94,
+   "median_price": 5281.67,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Miu Miu Wander": {
+   "listings": 356,
+   "median_price": 836.5,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Prada Bonnie": {
+   "listings": 16,
+   "median_price": 6132.2,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Prada Triangle Pouch": {
+   "listings": 340,
+   "median_price": 6813.75,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Prada Re-Edition Nylon": {
+   "listings": 2,
+   "median_price": 4105.29,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Bottega Veneta Andiamo": {
+   "listings": 10,
+   "median_price": 7866.91,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Bottega Veneta Cassette": {
+   "listings": 0,
+   "median_price": 7033.16,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Balenciaga Le City": {
+   "listings": 47,
+   "median_price": 6817.5,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Chloe Paddington": {
+   "listings": 330,
+   "median_price": 6526.38,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Gucci Indy": {
+   "listings": 74,
+   "median_price": 1915.61,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Gucci Jackie 1961": {
+   "listings": 0,
+   "median_price": 4018.43,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Fendi Baguette 1997": {
+   "listings": 196,
+   "median_price": 8114.05,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Fendi Peekaboo": {
+   "listings": 383,
+   "median_price": 5079.34,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Loewe Amazona 180": {
+   "listings": 40,
+   "median_price": 4573.28,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Loewe Puzzle": {
+   "listings": 23,
+   "median_price": 3776.73,
+   "min_price": 0.0,
+   "max_price": 0.0
+  },
+  "Saint Laurent Mombasa": {
+   "listings": 39,
+   "median_price": 8334.16,
+   "min_price": 0.0,
+   "max_price": 0.0
+  }
+ },
+ "news": {
+  "Chanel Maxi": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Chanel Classic": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Chanel Large Tote": {
+   "mentions": 1,
+   "recent_headline": ""
+  },
+  "Dior Bow Bag": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Dior Cigale": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Dior Lady Dior": {
+   "mentions": 2,
+   "recent_headline": ""
+  },
+  "Dior Saddle Bag": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Hermes Birkin 25": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Hermes Kelly Mini II": {
+   "mentions": 9,
+   "recent_headline": ""
+  },
+  "Hermes Constance": {
+   "mentions": 1,
+   "recent_headline": ""
+  },
+  "Hermes Kelly Cut Pochette": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "The Row Peggy Clutch": {
+   "mentions": 7,
+   "recent_headline": ""
+  },
+  "The Row Margaux": {
+   "mentions": 1,
+   "recent_headline": ""
+  },
+  "The Row Marlo Tote": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Miu Miu Arcadie": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Miu Miu Wander": {
+   "mentions": 1,
+   "recent_headline": ""
+  },
+  "Prada Bonnie": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Prada Triangle Pouch": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Prada Re-Edition Nylon": {
+   "mentions": 8,
+   "recent_headline": ""
+  },
+  "Bottega Veneta Andiamo": {
+   "mentions": 1,
+   "recent_headline": ""
+  },
+  "Bottega Veneta Cassette": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Balenciaga Le City": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Chloe Paddington": {
+   "mentions": 2,
+   "recent_headline": ""
+  },
+  "Gucci Indy": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Gucci Jackie 1961": {
+   "mentions": 4,
+   "recent_headline": ""
+  },
+  "Fendi Baguette 1997": {
+   "mentions": 4,
+   "recent_headline": ""
+  },
+  "Fendi Peekaboo": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Loewe Amazona 180": {
+   "mentions": 4,
+   "recent_headline": ""
+  },
+  "Loewe Puzzle": {
+   "mentions": 0,
+   "recent_headline": ""
+  },
+  "Saint Laurent Mombasa": {
+   "mentions": 0,
+   "recent_headline": ""
+  }
+ }
+}

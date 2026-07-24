@@ -1,0 +1,6 @@
+requests>=2.31
+beautifulsoup4>=4.12
+pytrends>=4.9
+feedparser>=6.0
+openpyxl>=3.1
+pandas>=2.0
