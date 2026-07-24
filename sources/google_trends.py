@@ -29,7 +29,10 @@ PAUSE_BETWEEN = 8.0     # seconds; lower than this and you will get 429s
 
 
 def collect(terms: list[str], geo: str = "", timeframe: str = "today 12-m",
-            max_retries: int = 3) -> dict[str, dict]:
+            max_retries: int | None = None) -> dict[str, dict]:
+    import os
+    if max_retries is None:
+        max_retries = int(os.getenv("TRENDS_MAX_RETRIES", "3"))
     """
     Return {term: {"level": float, "momentum": float}}.
 

@@ -52,10 +52,21 @@ def build_rows(mode: str, geo: str, auto_discover: bool) -> list[scoring.Scored]
             new_rows = autodiscover.expand(terms, geo=geo)
             if run.append_watchlist(wl, new_rows):
                 terms = run.load_watchlist(wl)
+        import os
         from sources import google_trends
         trends = google_trends.collect(terms, geo=geo)
-        from sources import ebay_api, rss_news
-        ebay = ebay_api.collect(terms)
+
+        # eBay needs API keys. If they are not set, skip it (empty columns)
+        # rather than crash - real Trends/press data still flows.
+        ebay = {}
+        if os.getenv("EBAY_CLIENT_ID") and os.getenv("EBAY_CLIENT_SECRET"):
+            from sources import ebay_api
+            ebay = ebay_api.collect(terms)
+        else:
+            print("NOTE: no EBAY_CLIENT_ID/SECRET set - skipping eBay signal "
+                  "(listings/price will be blank). Real Trends + press still used.")
+
+        from sources import rss_news
         news = rss_news.collect(terms)
     return scoring.blend(trends, ebay, news)
 
