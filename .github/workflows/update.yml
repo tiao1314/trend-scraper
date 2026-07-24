@@ -5,8 +5,8 @@ on:
       mode:
         description: "Which data to generate"
         type: choice
-        default: mock
-        options: [mock, live, auto-discover]
+        default: live
+        options: [live, auto-discover, mock]
   schedule:
     - cron: "0 6 * * 1"
 permissions:
@@ -30,9 +30,9 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode }}"
           case "$MODE" in
-            live)          python export_web.py ;;
+            mock)          python export_web.py --mock ;;
             auto-discover) python export_web.py --auto-discover ;;
-            *)             python export_web.py --mock ;;
+            *)             python export_web.py ;;
           esac
       - name: Commit refreshed data
         run: |
